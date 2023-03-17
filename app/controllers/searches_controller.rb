@@ -16,11 +16,11 @@ class SearchesController < ApplicationController
      else
 
        if params[:search]=="完全一致"
-        @users = User.where("name like?","%#{search_word}%")
+        @users = User.where("name like?","#{search_word}")
        elsif params[:search]=="前方一致"
-        @users = User.where("name like?","%#{search_word}%")
+        @users = User.where("name like?","#{search_word}%")
        elsif params[:search]=="後方一致"
-        @users = User.where("name like?","%#{search_word}%")
+        @users = User.where("name like?","%#{search_word}")
        else
         @users = User.where("name like?","%#{search_word}%")
        end
