@@ -1,0 +1,40 @@
+
+<div class='container'>
+<div class='row'>
+<div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+     <h2><%=@user.name%>さんとのDM</h2>
+
+     <div class="w-100 p-3 h-100 mb-10 border border-secondary" style="background-color: #eee;">
+      <% @messages.each do |message| %>
+        <% if message.user_id == current_user.id %>
+          <div class="pull-right">
+            <div class="message-body">
+              <%= message.body %>
+            </div>
+          </div>
+        <% else %>
+          <div class="message other pull-left">
+            <div class="message-sender"><%= message.user.name %></div>
+            <div class="message-body">
+              <%= message.body %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div>
+        <%= form_with model: @message do |f| %>
+         <div class="form-group">
+          <%= f.text_area :body, placeholder: "メッセージを入力してください", autocomplete: "off",class: "form-control"%>
+         </div>
+          <%= f.hidden_field :room_id, value: @room.id %>
+         <div class="form-group">
+          <%= f.submit "送信", class: 'btn btn-secondary'%>
+         </div>
+        <% end %>
+    </div>
+
+</div>
+</div>
+</div>

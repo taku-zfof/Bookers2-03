@@ -1,0 +1,2 @@
+class BookViewCount < ApplicationRecord
+end

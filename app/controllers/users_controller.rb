@@ -12,6 +12,24 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+
+    @current_bridges = UserRoomBridge.where(user_id: current_user.id)
+    @partner_bridges = UserRoomBridge.where(user_id: @user.id)
+    unless @user.id == current_user.id
+
+      @current_bridges.each do|current_bridge|
+      @partner_bridges.each do |partner_bridge|
+        if current_bridge.room_id==partner_bridge.room_id
+          @room_id=current_bridge.room_id
+          @is_room=true
+        end
+     end
+     end
+     unless@is_room
+       @room=Room.new
+       @bridge=UserRoomBridge.new
+     end
+    end
   end
 
   def index

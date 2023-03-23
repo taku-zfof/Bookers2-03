@@ -3,10 +3,14 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @book_comment=BookComment.new
+    @book_view_count=BookViewCount.new(book_id: @book.id)
+    @book_view_count.save
   end
 
   def index
-    @books = Book.all
+    today  = Time.current.at_end_of_day
+    sixdays_ago  = (today - 6.day).at_beginning_of_day
+    @books = Book.all.sort_by{|x| x.favorites.where(created_at: sixdays_ago...today).size}.reverse
     @book=Book.new
   end
 

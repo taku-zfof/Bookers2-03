@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'rooms/show'
+  get 'rooms/index'
   get 'relationships/fs'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -16,6 +18,9 @@ Rails.application.routes.draw do
     get :followers, on: :member
   end
 get "search"=>"searches#search" , as: "search"
+
+resources :rooms, only: [:create, :index, :show]
+resources :messages, only: [:create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 end
