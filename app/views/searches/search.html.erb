@@ -10,8 +10,10 @@
       <h2>Search result</h2>
       <%if @range=="Book"%>
       　<%= render 'books/index', books: @books%>
-    　<%else%>
+    　<%elsif @range=="User"%>
       　<%= render 'users/index',users: @users %>
+      <%elsif @range=="Tag"%>
+        <%= render 'books/index', books: @books%>
     　<%end%>
     </div>
   </div>

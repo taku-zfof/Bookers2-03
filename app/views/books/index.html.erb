@@ -8,6 +8,11 @@
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>All Books</h2>
+      <p>
+        <%= link_to '新しい順', books_path(latest: "true") %>  |
+        <%= link_to '評価の高い順', books_path(score_count: "true") %>  |
+        <%= link_to 'いいね順(１週間)', books_path %>
+      </p>
       <%= render 'index', books: @books%>
     </div>
   </div>

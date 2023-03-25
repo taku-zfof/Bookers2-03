@@ -10,7 +10,15 @@ class BooksController < ApplicationController
   def index
     today  = Time.current.at_end_of_day
     sixdays_ago  = (today - 6.day).at_beginning_of_day
-    @books = Book.all.sort_by{|x| x.favorites.where(created_at: sixdays_ago...today).size}.reverse
+
+    if params[:latest]
+      @books = Book.latest
+    elsif params[:star_count]
+      @books = Book.star_count
+    else
+      @books = Book.all.sort_by{|x| x.favorites.where(created_at: sixdays_ago...today).size}.reverse
+    end
+
     @book=Book.new
   end
 
@@ -50,6 +58,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :score)
+    params.require(:book).permit(:title, :body, :score,:tag)
   end
 end
