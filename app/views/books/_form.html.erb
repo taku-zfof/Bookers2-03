@@ -2,13 +2,30 @@
  <%= render 'layouts/errors', obj: book %>
 
   <div class="form-group">
-    <%= f.label :title %>
+    <%= f.label :Title %>
     <%= f.text_field :title, class: 'form-control book_title' %>
   </div>
   <div class="form-group">
-    <%= f.label :opinion %>
+    <%= f.label :Opinion %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
+
+  <div id="post_raty" class="mb-2">
+    <%= f.label :Rate %>
+    <%= f.hidden_field :score%></div>
+    <script>
+    // scriptファイルをどのidの部分に配置するかを指定
+    var elem = document.querySelector('#post_raty');
+    var opt = {
+
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+
+      scoreName: 'book[score]',
+     };
+    raty(elem,opt);
+    </script>
+
   <div class="form-group">
     <%= f.submit class: 'btn btn-success btn-block' %>
   </div>

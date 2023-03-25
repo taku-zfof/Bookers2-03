@@ -17,6 +17,18 @@
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
         <td class="favorite_<%=book.id%>"><%= render 'favorites/favorites', book: book%></td>
+         <td><div id="bookscore<%=book.id%>"></div></td>
+         <script>
+          var elem = document.querySelector('#bookscore<%=book.id%>');
+          var opt = {
+            starOff: "<%= asset_path('star-off.png') %>",
+            starOn: "<%= asset_path('star-on.png') %>",
+            readOnly: true,
+            score: <%= book.score %>,
+            number:5
+           };
+          raty(elem,opt);
+          </script>
         <td><p>コメント数：<%= book.book_comments.count %></p></td>
         <td><p>閲覧数：<%= book.book_view_counts.count %></p></td>
       </tr>
