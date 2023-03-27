@@ -19,14 +19,11 @@
     <%= f.label :Rate %>
     <%= f.hidden_field :score%></div>
     <script>
-    // scriptファイルをどのidの部分に配置するかを指定
     var elem = document.querySelector('#post_raty');
     var opt = {
-
       starOff:  '<%= asset_path('star-off.png') %>',
       starOn : '<%= asset_path('star-on.png') %>',
-
-      scoreName: 'book[score]',
+      scoreName: 'book[score]'
      };
     raty(elem,opt);
     </script>

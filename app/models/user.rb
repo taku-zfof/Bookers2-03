@@ -18,6 +18,8 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :user_room_bridges, dependent: :destroy
 
+  has_many :group_users,  dependent: :destroy
+
  def is_followed_by?(user)
    follow_sareru.find_by(follow_suru_id: user.id).present?
  end

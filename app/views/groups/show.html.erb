@@ -1,0 +1,37 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>Your info</h2>
+      <%= render 'users/info', user: current_user%>
+      <h2 class="mt-3">New book</h2>
+      <%= render 'books/form', book: Book.new %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+  		<table class='table'>
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>グループ名</th>
+            <th>紹介文</th>
+            <th>メンバー</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td><%= image_tag @group.get_group_image, size: '50x50' %></td>
+              <td><%= @group.name %></td>
+              <td><%= @group.introduction%></td>
+              <td><% @group.users.each do|user|%>
+                  <%=user.name%>
+                  <%end%>
+              </td>
+              <%unless @group.owner_id==current_user.id%>
+               <%if @group.joined_in?(current_user)%>
+                 <td><%= link_to 'Leave this group', group_user_path(id: @group.id), method: :delete, class: "btn btn-sm btn-danger" %></td>
+                <%else%>
+                 <td><%= link_to 'Join this group', group_users_path(id: @group.id), method: :post, class: "btn btn-sm btn-primary" %></td>
+                <%end%>
+              <%end%>
+            </tr>
+        </tbody>
+</table>

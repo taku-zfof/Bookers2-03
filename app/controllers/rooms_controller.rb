@@ -3,14 +3,14 @@ class RoomsController < ApplicationController
 
   def show
     @room=Room.find(params[:id])
-    
+
     @messages=@room.messages.all
     @message=Message.new
-    
+
     @partner_bridges=@room.user_room_bridges
     @partner_bridge=@partner_bridges.where.not(user_id: current_user.id).first
     @user=User.find_by(id: @partner_bridge.user_id)
- end
+  end
 
 
   def create

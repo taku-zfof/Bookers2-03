@@ -13,7 +13,7 @@ class BooksController < ApplicationController
 
     if params[:latest]
       @books = Book.latest
-    elsif params[:star_count]
+    elsif params[:score_count]
       @books = Book.star_count
     else
       @books = Book.all.sort_by{|x| x.favorites.where(created_at: sixdays_ago...today).size}.reverse
