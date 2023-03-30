@@ -13,8 +13,8 @@ class Group < ApplicationRecord
     (group_image.attached?) ? group_image : 'no_image.jpg'
  end
 
- def joined_in?(user)
+ def joined_in?(group,user)
    group_users=GroupUser.all
-   group_users.find_by(user_id: user.id).present?
+   group_users.find_by(user_id: user.id,group_id: group.id).present?
  end
 end

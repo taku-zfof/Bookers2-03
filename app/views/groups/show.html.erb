@@ -26,8 +26,7 @@
                   <%end%>
               </td>
               <%unless @group.owner_id==current_user.id%>
-
-                <%if @group.joined_in?(current_user)%>
+                <%if @group.joined_in?(@group,current_user)%>
                  <td><%= link_to 'Leave this group', group_user_path(id: @group.id), method: :delete, class: "btn btn-sm btn-danger" %></td>
                 <%else%>
                  <td><%= link_to 'Join this group', group_users_path(id: @group.id), method: :post, class: "btn btn-sm btn-primary" %></td>

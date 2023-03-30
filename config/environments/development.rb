@@ -76,4 +76,17 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.hosts.clear
   config.web_console.whitelisted_ips = '133.218.40.191'
+
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port:                 587,
+    address:              'smtp.gmail.com',
+    domain:               'gmail.com',
+    user_name:            ENV['KEY'],
+    password:             ENV['SECRET_KEY'],
+    authentication:       'login',
+    enable_starttls_auto: true
+  }
 end
