@@ -15,13 +15,13 @@
     <%= f.text_field :tag, class: 'form-control book_tag' %>
   </div>
 
+  <div><%= f.label :Rate %></div>
   <div id="post_raty" class="mb-2">
-    <%= f.label :Rate %>
     <%= f.hidden_field :score%>
   </div>
 
     <script>
-    
+
     $('#post_raty').empty();
 
     var elem = document.querySelector('#post_raty');

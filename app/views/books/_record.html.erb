@@ -71,10 +71,10 @@
       </table>
 
       <h3>グラフ</h3>
-      <canvas id="myLineChart" height="160"></canvas>
+      <canvas id="myLineChart"></canvas>
 
   <script>
-
+      $('#myLineChart').empty();
       var ctx = document.getElementById("myLineChart");
       var myLineChart = new Chart(ctx, {
         type: 'line',
@@ -108,4 +108,6 @@
           },
         }
       });
+      myLineChart.canvas.parentNode.style.height = '400px';
+      myLineChart.canvas.parentNode.style.width = '100%';
   </script>

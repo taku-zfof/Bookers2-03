@@ -26,7 +26,7 @@
       <td class="favorite_<%=book.id%>"><%= render "favorites/favorites",book: book%></td>
       <td><div id="show_raty"></div>
            <script>
-            $('#post_raty').empty();
+            $('#show_raty').empty();
             var elem = document.querySelector('#show_raty');
             var opt = {
               space: false,
