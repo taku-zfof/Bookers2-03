@@ -12,6 +12,7 @@
   		<div>
   		<%= render 'book_comments/comments', book: @book, book_comment: @book_comment, book_view_count: @book_view_count%>
   		</div>
+  		<div></div>
 
   		<%= form_with model: [@book, @book_comment] ,local: false do |f| %>
       <div class="form-group">

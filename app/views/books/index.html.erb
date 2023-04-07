@@ -13,7 +13,7 @@
         <%= link_to '評価の高い順', books_path(score_count: "true") %>  |
         <%= link_to 'いいね順(１週間)', books_path %>
       </p>
-      <%= render 'index', books: @books%>
+      <%= render 'index', books: @books, user: @user%>
     </div>
   </div>
 </div>

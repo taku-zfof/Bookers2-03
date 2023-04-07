@@ -5,6 +5,25 @@ class BooksController < ApplicationController
     @book_comment=BookComment.new
     @book_view_count=BookViewCount.new(book_id: @book.id)
     @book_view_count.save
+    @user= @book.user
+
+    @current_bridges = UserRoomBridge.where(user_id: current_user.id)
+    @partner_bridges = UserRoomBridge.where(user_id: @user.id)
+
+    unless @user.id == current_user.id
+      @current_bridges.each do|current_bridge|
+       @partner_bridges.each do |partner_bridge|
+        if current_bridge.room_id==partner_bridge.room_id
+          @room_id = current_bridge.room_id
+          @is_room = true
+        end
+       end
+      end
+     unless @is_room == true
+       @room=Room.new
+       @bridge=UserRoomBridge.new
+     end
+    end
   end
 
   def index
@@ -14,12 +33,32 @@ class BooksController < ApplicationController
     if params[:latest]
       @books = Book.latest
     elsif params[:score_count]
-      @books = Book.star_count
+      @books = Book.score_count
     else
       @books = Book.all.sort_by{|x| x.favorites.where(created_at: sixdays_ago...today).size}.reverse
     end
 
     @book=Book.new
+    @user=current_user
+
+    @current_bridges = UserRoomBridge.where(user_id: current_user.id)
+    @partner_bridges = UserRoomBridge.where(user_id: @user.id)
+
+    unless @user.id == current_user.id
+      @current_bridges.each do|current_bridge|
+       @partner_bridges.each do |partner_bridge|
+        if current_bridge.room_id==partner_bridge.room_id
+          @room_id = current_bridge.room_id
+          @is_room = true
+        end
+       end
+      end
+     unless @is_room == true
+       @room=Room.new
+       @bridge=UserRoomBridge.new
+     end
+    end
+
   end
 
   def create

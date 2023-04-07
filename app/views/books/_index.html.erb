@@ -24,16 +24,18 @@
         <td><%= link_to "#{book.tag}", search_path(range: "Tag",word: "#{book.tag}"),search: "完全一致" %></td>
         <td class="favorite_<%=book.id%>"><%= render 'favorites/favorites', book: book%></td>
          <td><div id="bookscore<%=book.id%>"></div></td>
+
          <script>
-          var elem = document.querySelector('#bookscore<%=book.id%>');
-          var opt = {
-            starOff: "<%= asset_path('star-off.png') %>",
-            starOn: "<%= asset_path('star-on.png') %>",
-            readOnly: true,
-            score: <%= book.score %>,
-            number:5
-           };
-          raty(elem,opt);
+           $('#bookscore<%=book.id%>').empty();
+            var elem = document.querySelector('#bookscore<%=book.id%>');
+            var opt = {
+              starOff: "<%= asset_path('star-off.png') %>",
+              starOn: "<%= asset_path('star-on.png') %>",
+              readOnly: true,
+              score: <%= book.score %>,
+              number:5
+             };
+            raty(elem,opt);
           </script>
         <td><p><%= book.book_comments.count %></p></td>
         <td><p><%= book.book_view_counts.count %></p></td>

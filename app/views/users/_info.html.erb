@@ -32,12 +32,7 @@
           <%if @is_room==true %>
             <%=link_to"DM", room_path(@room_id), class: "btn btn-primary btn-block"%>
           <%else%>
-            <%=form_with model: @room do |f|%>
-               <%=fields_for @user_room_bridge do|e|%>
-               <%=e.hidden_field :user_id, value: user.id %>
-               <%end%>
-             <%=f.submit "DM",class: "btn btn-primary btn-block"%>
-            <%end%>
+            <%=link_to"DM", rooms_path(user_id: user.id), method: :post,class: "btn btn-primary btn-block"%>
           <%end%>
 
        <%end%>

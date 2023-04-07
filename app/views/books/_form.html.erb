@@ -17,8 +17,13 @@
 
   <div id="post_raty" class="mb-2">
     <%= f.label :Rate %>
-    <%= f.hidden_field :score%></div>
+    <%= f.hidden_field :score%>
+  </div>
+
     <script>
+    
+    $('#post_raty').empty();
+
     var elem = document.querySelector('#post_raty');
     var opt = {
       starOff:  '<%= asset_path('star-off.png') %>',
