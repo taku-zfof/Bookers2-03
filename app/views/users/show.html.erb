@@ -19,14 +19,10 @@
         Posted Books
       <%end%></h2>
       <%= render 'books/index',user: @user,books: @books %>
+      <%= render 'books/record'%>
     </div>
     </div>
-  <div div class='row'>
-     <div class='col-md-3'></div>
-      <div class='col-md-8 offset-md-1'>
-       <%= render 'books/record'%>
-      </div>
-  </div>
+
 </div>
 
 <!--,todays_posts: @todays_posts,yesterdays_posts: @yesterdays_posts,posted_count_dod: @posted_count_dod,this_weeks_posts: @this_weeks_posts,last_weeks_posts: @last_weeks_posts,posted_count_wow: @posted_count_wow-->
