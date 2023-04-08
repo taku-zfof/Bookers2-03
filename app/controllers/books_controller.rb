@@ -6,12 +6,12 @@ class BooksController < ApplicationController
     @book_comment=BookComment.new
     book_view_count=BookViewCount.new(book_id: @book.id)
     book_view_count.save
-    @user= @book.user
+    user= @book.user
 
     @current_bridges = UserRoomBridge.where(user_id: current_user.id)
-    @partner_bridges = UserRoomBridge.where(user_id: @user.id)
+    @partner_bridges = UserRoomBridge.where(user_id: user.id)
 
-    unless @user.id == current_user.id
+    unless user.id == current_user.id
       @current_bridges.each do|current_bridge|
        @partner_bridges.each do |partner_bridge|
         if current_bridge.room_id==partner_bridge.room_id
