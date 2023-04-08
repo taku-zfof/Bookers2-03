@@ -8,15 +8,18 @@
     </div>
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
+  		<div>
+  		<%= render 'index', books: @books, user: @user%>
+  		</div>
 
   		<div>
-  		<%= render 'book_comments/comments', book: @book, book_comment: @book_comment, book_view_count: @book_view_count%>
+  		<%= render 'book_comments/comments', book: @book, book_comment: @book_comment%>
   		</div>
   		<div></div>
 
   		<%= form_with model: [@book, @book_comment] ,local: false do |f| %>
       <div class="form-group">
-        <%= f.text_area :comment,class: 'form-control book_title', rows: '5'%>
+        <%= f.text_area :comment,id: "comment_form",class: 'form-control', rows: '5'%>
       </div>
       <%= f.submit "送信" %>
       <% end %>

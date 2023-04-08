@@ -2,9 +2,10 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @books = Book.where(id: params[:id])
     @book_comment=BookComment.new
-    @book_view_count=BookViewCount.new(book_id: @book.id)
-    @book_view_count.save
+    book_view_count=BookViewCount.new(book_id: @book.id)
+    book_view_count.save
     @user= @book.user
 
     @current_bridges = UserRoomBridge.where(user_id: current_user.id)
@@ -39,12 +40,12 @@ class BooksController < ApplicationController
     end
 
     @book=Book.new
-    @user=current_user
+    user=current_user
 
     @current_bridges = UserRoomBridge.where(user_id: current_user.id)
-    @partner_bridges = UserRoomBridge.where(user_id: @user.id)
+    @partner_bridges = UserRoomBridge.where(user_id: user.id)
 
-    unless @user.id == current_user.id
+    unless user.id == current_user.id
       @current_bridges.each do|current_bridge|
        @partner_bridges.each do |partner_bridge|
         if current_bridge.room_id==partner_bridge.room_id

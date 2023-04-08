@@ -10,6 +10,7 @@ class EventsController < ApplicationController
     @event=Event.new(event_params)
     @event.group=@group
     @users=@group.users
+    
    if @event.save
     EventMailer.event_email(@event,@users,current_user).deliver
     redirect_to group_event_done_path(@group,@event)
