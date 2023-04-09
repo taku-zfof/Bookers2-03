@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get :followings,on: :member
     get :followers, on: :member
+    get "search_record" => "searches#search_record",as: "search_record"
   end
+  
 get "search"=>"searches#search" , as: "search"
 
 resources :rooms, only: [:create, :index, :show]

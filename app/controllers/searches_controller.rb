@@ -35,4 +35,12 @@ class SearchesController < ApplicationController
        end
      end
   end
+
+   def search_record
+    user=User.find(params[:user_id])
+    date= params[:date].to_date
+
+    @count =user.books.where(created_at: date.all_day).count
+
+   end
 end

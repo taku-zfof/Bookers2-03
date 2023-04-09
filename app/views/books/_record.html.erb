@@ -1,3 +1,13 @@
+     <h4>投稿数検索</h4>
+     <div>
+       <%= form_with url: user_search_record_path(@user),method: :get, local: false do|f|%>
+          <%= f. date_field :date,placeholder: "日付を入力"%>
+          <%= f. submit"検索", class: "btn btn-primary btn-sm"%>
+        <%end%>
+     </div>
+    <div id="selected_date_record"></div>
+
+
 <h3>投稿数の前日比・前週比</h3>
       <table class="table table-bordered">
         <thead>
@@ -84,31 +94,14 @@
           labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
           datasets: [
             {
-              label: '投稿した本の数',
+              label: '投稿数',
+              <% %>
               data: [<%= @daysago_posts_6.count %>, <%= @daysago_posts_5.count %>,<%= @daysago_posts_4.count %>,<%= @daysago_posts_3.count %>,<%= @daysago_posts_2.count %>,<%= @yesterdays_posts.count %>,<%= @todays_posts.count %>],
-              borderColor: "rgba(0,0,255,1)",
-              backgroundColor: "rgba(0,0,0,0)"
+
             }
           ],
         },
-        options: {
-          title: {
-            display: true,
-            text: '7日間の投稿数の比較'
-          },
-          scales: {
-            yAxes: [{
-              ticks: {
-                suggestedMax: 10,
-                suggestedMin: 0,
-                stepSize: 1,
-                callback: function(value, index, values){
-                  return  value
-                }
-              }
-            }]
-          },
-        }
+
       });
       myLineChart.canvas.parentNode.style.height = '400px';
       myLineChart.canvas.parentNode.style.width = '100%';
