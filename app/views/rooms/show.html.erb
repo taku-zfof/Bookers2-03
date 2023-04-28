@@ -6,7 +6,7 @@
      <div class="w-100 p-3 h-100 mb-10 border border-secondary" style="background-color: #eee;">
       <% @messages.each do |message| %>
         <% if message.user_id == current_user.id %>
-          <div class="message">
+          <div class="message text-right">
             <div class="message-body">
               <small><%= message.user.name %></small>
               <%= message.body %>

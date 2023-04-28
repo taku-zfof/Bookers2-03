@@ -1,0 +1,22 @@
+<p>住所</p>
+<p><%= @book.address %></p>
+
+<div id="map"></div>
+・・・
+
+<style>
+#map{
+  height: 150px;
+  width:270px;
+}
+</style>
+
+<script>
+function initMap(){
+  let map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: <%=@book.latitude%>, lng: <%= @book.longitude %>},
+  zoom: 8
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQWn7tqwqnsFKtPlZsMGVgGR1peg45z8A&callback=initMap" async defer></script>

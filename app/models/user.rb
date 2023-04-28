@@ -24,7 +24,6 @@ class User < ApplicationRecord
    follow_sareru.find_by(follow_suru_id: user.id).present?
  end
 
-
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: {maximum: 50}
 

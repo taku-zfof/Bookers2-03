@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get :followers, on: :member
     get "search_record" => "searches#search_record",as: "search_record"
   end
-  
+
 get "search"=>"searches#search" , as: "search"
 
 resources :rooms, only: [:create, :index, :show]
@@ -30,5 +30,6 @@ resources :groups, only: [:index, :show, :create, :edit,:destroy]do
 end
 
 resources :group_users, only: [:create,:destroy]
+post "create_meeting" => "meetings#create_meeting", as: "create_meeting"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
