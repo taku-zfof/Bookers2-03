@@ -1,13 +1,15 @@
-<p>住所</p>
+<h3>Address</h3>
 <p><%= @book.address %></p>
+<h3>Near Station</h3>
+<p><%=@book.near_station%></p>
 
 <div id="map"></div>
 ・・・
 
 <style>
 #map{
-  height: 150px;
-  width:270px;
+  height: 300px;
+  width:400px;
 }
 </style>
 
@@ -19,4 +21,4 @@ function initMap(){
   });
 }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQWn7tqwqnsFKtPlZsMGVgGR1peg45z8A&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY'] %>&callback=initMap" async defer></script>
